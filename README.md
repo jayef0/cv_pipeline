@@ -62,7 +62,7 @@ This installation guide assumes you have an untouched Ubuntu 18.04.2 LTS install
    chmod +x download_models.sh
    ./download_models.sh
    ``` 
-3. Install dependencies
+3. Install dependencies (I highly recommend to use a virtual environment. See https://docs.python.org/3/library/venv.html)
    ```bash
    pip3 install -r requirements.txt
    ```
