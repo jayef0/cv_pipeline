@@ -66,3 +66,16 @@ This installation guide assumes you have an untouched Ubuntu 18.04.2 LTS install
    ```bash
    pip3 install -r requirements.txt
    ```
+## Usage
+
+1. Start the api locally
+   ```bash
+   python3 webserver/server.py
+   ```
+2. Start jupyter
+
+3. Start the api locally
+   ```bash
+   jupyter lab
+   ```
+4. Navigate to the api_connect folder and choose grasp_api.ipynb notebook
