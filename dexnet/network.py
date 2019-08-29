@@ -2,7 +2,7 @@ from autolab_core import YamlConfig
 from gqcnn.grasping import Grasp2D, SuctionPoint2D, CrossEntropyRobustGraspingPolicy, RgbdImageState
 from gqcnn.utils import GripperMode, NoValidGraspsException
 from perception import CameraIntrinsics, ColorImage, DepthImage, BinaryImage, RgbdImage
-from visualization import Visualizer2D as vis
+#from visualization import Visualizer2D as vis
 #from practical.vision import baxterCamIntrinsics
 import numpy as np
 from gqcnn.grasping import FullyConvolutionalGraspingPolicyParallelJaw, FullyConvolutionalGraspingPolicySuction
