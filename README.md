@@ -73,8 +73,6 @@ This installation guide assumes you have an untouched Ubuntu 18.04.2 LTS install
    python3 webserver/server.py
    ```
 2. Start jupyter
-
-3. Start the api locally
    ```bash
    jupyter lab
    ```
