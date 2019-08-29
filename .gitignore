@@ -1,3 +1,7 @@
+__pycache__/
+*.py[cod]
+*$py.class
+
 %% compile temporaries
 *.o
 *.a
@@ -98,12 +102,24 @@ _region_.*
 %% models
 models/
 
+%% vscode
+.vscode/
 
 %% QUESTIONABLE ???!!!
 *.zip
 *_doc
 html
 *.tgz
+
+
+%% Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
 
 %% ROS
