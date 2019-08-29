@@ -25,11 +25,11 @@
 	 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
-from gop import *
+from .gop import *
 import numpy as np
 from time import sleep
 from pickle import dump,load
-from util import *
+from .util import *
 
 prop_settings = proposals.ProposalSettings()
 prop_settings.foreground_seeds = proposals.RegularSeed()
@@ -68,7 +68,7 @@ for N_S,N_T in [(1,1),(1,2),(3,2),(8,3),(12,4),(18,5),(50,5),(70,6),(125,7),(150
 	bo,b_bo,pool_s,box_pool_s = dataset.proposeAndEvaluate( over_segs, [], boxes, proposals.Proposal( prop_settings ) )
 	ns.append( np.mean(box_pool_s[~np.isnan(box_pool_s)]) )
 	bos.append( b_bo )
-	print( "N_S = %3d   N_T = %2d    # windows = %4.0f [%4.0f .. %4.0f]  ABO = %4.2f  [%0.2f]"%(N_S,N_T,np.mean(box_pool_s[~np.isnan(box_pool_s)]),np.min(box_pool_s[~np.isnan(box_pool_s)]), np.max(box_pool_s[~np.isnan(box_pool_s)]),np.mean(b_bo),np.mean(np.maximum(2*b_bo-1,0))) )
+	print(( "N_S = %3d   N_T = %2d    # windows = %4.0f [%4.0f .. %4.0f]  ABO = %4.2f  [%0.2f]"%(N_S,N_T,np.mean(box_pool_s[~np.isnan(box_pool_s)]),np.min(box_pool_s[~np.isnan(box_pool_s)]), np.max(box_pool_s[~np.isnan(box_pool_s)]),np.mean(b_bo),np.mean(np.maximum(2*b_bo-1,0))) ))
 
 ns = np.hstack( ns )
 bos = np.vstack( bos )

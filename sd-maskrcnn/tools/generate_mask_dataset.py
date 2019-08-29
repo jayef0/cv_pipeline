@@ -202,7 +202,7 @@ def generate_segmask_dataset(output_dataset_path, config, save_tensors=True, war
         reverse_obj_ids = metadata['obj_ids']
         obj_id_map = utils.reverse_dictionary(reverse_obj_ids)
         obj_splits = metadata['obj_splits']
-        obj_keys = obj_splits.keys()
+        obj_keys = list(obj_splits.keys())
         mesh_filenames = metadata['meshes']
 
         # Get list of images generated so far

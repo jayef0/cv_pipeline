@@ -67,7 +67,7 @@ class HeapStateSpace(gym.Space):
         self.num_objs_rv = sstats.poisson(config['mean_objs']-1)
         self.max_objs = config['max_objs']
         self.min_objs = 1
-        if 'min_objs' in config.keys():
+        if 'min_objs' in list(config.keys()):
             self.min_objs = config['min_objs']
         
         self.max_obj_diam = config['max_obj_diam']
@@ -114,7 +114,7 @@ class HeapStateSpace(gym.Space):
             self._mesh_dir = os.path.join(os.getcwd(), self._mesh_dir)
         for root, dirs, files in os.walk(self._mesh_dir):
             dataset_name = os.path.basename(root)
-            if dataset_name in obj_config['object_keys'].keys():
+            if dataset_name in list(obj_config['object_keys'].keys()):
                 for f in files:
                     filename, ext = os.path.splitext(f)
                     if ext.split('.')[1] in trimesh.exchange.load.mesh_formats() \
@@ -166,7 +166,7 @@ class HeapStateSpace(gym.Space):
     def set_splits(self, obj_splits):
         self.train_keys = []
         self.test_keys = []
-        for k in obj_splits.keys():
+        for k in list(obj_splits.keys()):
             if obj_splits[k] == TRAIN_ID:
                 self.train_keys.append(k)
             else:
@@ -190,7 +190,7 @@ class HeapStateSpace(gym.Space):
         # setup workspace
         workspace_obj_states = []
         workspace_objs = self._config['workspace']['objects']
-        for work_key, work_config in workspace_objs.items():
+        for work_key, work_config in list(workspace_objs.items()):
             
             # make paths absolute
             mesh_filename = work_config['mesh_filename']

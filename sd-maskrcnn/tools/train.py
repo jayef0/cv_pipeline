@@ -82,7 +82,7 @@ def train(config):
 
     # Load weights
     exclude_layers = []
-    print("Loading weights ", weights_path)
+    print(("Loading weights ", weights_path))
     if config['model']['weights'].lower() == "coco":
         # Exclude the last layers because they require a matching
         # number of classes

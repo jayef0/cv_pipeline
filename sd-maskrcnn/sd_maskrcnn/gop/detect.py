@@ -59,7 +59,7 @@ def detect(detector_type, config, run_dir, test_config):
     gt_mask_dir = os.path.join(dataset_dir, test_config['masks'])
 
     # Input binary mask data
-    if 'bin_masks' in test_config.keys():
+    if 'bin_masks' in list(test_config.keys()):
         bin_mask_dir = os.path.join(dataset_dir, test_config['bin_masks'])
 
     image_ids = np.arange(indices_arr.size)
@@ -143,9 +143,9 @@ def detect(detector_type, config, run_dir, test_config):
         np.save(os.path.join(pred_info_dir, output_name + '.npy'), r_info)
         pred_mask_output = np.stack(indiv_pred_masks).astype(np.uint8)
 
-    print('Saved prediction masks to:\t {}'.format(pred_dir))
-    print('Saved prediction info (bboxes, scores, classes) to:\t {}'.format(pred_info_dir))
-    print('Saved transformed GT segmasks to:\t {}'.format(resized_segmask_dir))
+    print(('Saved prediction masks to:\t {}'.format(pred_dir)))
+    print(('Saved prediction info (bboxes, scores, classes) to:\t {}'.format(pred_info_dir)))
+    print(('Saved transformed GT segmasks to:\t {}'.format(resized_segmask_dir)))
 
     return pred_dir, pred_info_dir, resized_segmask_dir
 
@@ -204,7 +204,7 @@ class MCG(object):
           sp2reg = sp2reg[ids, :]
         N = sp2reg.shape[0]
         mask = np.zeros((sp.shape[0], sp.shape[1], N), dtype=np.bool)
-        for i in tqdm(range(N)):
+        for i in tqdm(list(range(N))):
             mask[:,:,i] = sp2reg[i,:][sp-1]
         return mask
 

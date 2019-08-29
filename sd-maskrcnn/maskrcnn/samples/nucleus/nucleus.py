@@ -361,7 +361,7 @@ def mask_to_rle(image_id, mask, scores):
 
 def detect(model, dataset_dir, subset):
     """Run detection on images in the given directory."""
-    print("Running on {}".format(dataset_dir))
+    print(("Running on {}".format(dataset_dir)))
 
     # Create directory
     if not os.path.exists(RESULTS_DIR):
@@ -398,7 +398,7 @@ def detect(model, dataset_dir, subset):
     file_path = os.path.join(submit_dir, "submit.csv")
     with open(file_path, "w") as f:
         f.write(submission)
-    print("Saved to ", submit_dir)
+    print(("Saved to ", submit_dir))
 
 
 ############################################################
@@ -435,11 +435,11 @@ if __name__ == '__main__':
     elif args.command == "detect":
         assert args.subset, "Provide --subset to run prediction on"
 
-    print("Weights: ", args.weights)
-    print("Dataset: ", args.dataset)
+    print(("Weights: ", args.weights))
+    print(("Dataset: ", args.dataset))
     if args.subset:
-        print("Subset: ", args.subset)
-    print("Logs: ", args.logs)
+        print(("Subset: ", args.subset))
+    print(("Logs: ", args.logs))
 
     # Configurations
     if args.command == "train":
@@ -472,7 +472,7 @@ if __name__ == '__main__':
         weights_path = args.weights
 
     # Load weights
-    print("Loading weights ", weights_path)
+    print(("Loading weights ", weights_path))
     if args.weights.lower() == "coco":
         # Exclude the last layers because they require a matching
         # number of classes
@@ -488,5 +488,5 @@ if __name__ == '__main__':
     elif args.command == "detect":
         detect(model, args.dataset, args.subset)
     else:
-        print("'{}' is not recognized. "
-              "Use 'train' or 'detect'".format(args.command))
+        print(("'{}' is not recognized. "
+              "Use 'train' or 'detect'".format(args.command)))

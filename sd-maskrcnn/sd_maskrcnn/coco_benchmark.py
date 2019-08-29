@@ -114,7 +114,7 @@ def encode_gt(mask_dir):
 
     anno_path = os.path.join(mask_dir, 'annos_gt.json')
     json.dump(gt_annos, open(anno_path, 'w+'))
-    print("successfully wrote GT annotations to", anno_path)
+    print(("successfully wrote GT annotations to", anno_path))
 
 
 def encode_predictions(mask_dir, info_dir):
@@ -158,7 +158,7 @@ def encode_predictions(mask_dir, info_dir):
 
     anno_path = os.path.join(mask_dir, 'annos_pred.json')
     json.dump(annos, open(anno_path, 'w+'))
-    print("successfully wrote prediction annotations to", anno_path)
+    print(("successfully wrote prediction annotations to", anno_path))
 
 
 def compute_coco_metrics(gt_dir, pred_dir):
@@ -205,8 +205,8 @@ def compute_coco_metrics(gt_dir, pred_dir):
     with open(os.path.join(pred_dir, 'coco_summary.txt'), 'w') as coco_file:
         coco_file.write(precStr)
         coco_file.write(recStr)
-        print('COCO Metric Summary written to {}'.format(os.path.join(pred_dir,
-                                                                      'coco_summary.txt')))
+        print(('COCO Metric Summary written to {}'.format(os.path.join(pred_dir,
+                                                                      'coco_summary.txt'))))
     return ap, ar
 
 def coco_benchmark(pred_mask_dir, pred_info_dir, gt_mask_dir):

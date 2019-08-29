@@ -30,7 +30,7 @@ def __setup_path():
     paths = ['../build/','../build/release','../build/debug']
     current_path = os.path.split(inspect.getfile( inspect.currentframe() ))[0]
     paths = [os.path.realpath(os.path.abspath(os.path.join(current_path,x))) for x in paths]
-    paths = list( filter( lambda x: os.path.exists(x+'/lib/python/gop.so'), paths ) )
+    paths = list( [x for x in paths if os.path.exists(x+'/lib/python/gop.so')] )
     ptime = [os.path.getmtime(x+'/lib/python/gop.so') for x in paths]
     path = paths[ np.argmax( ptime ) ]
     sys.path.insert(0, path+'/lib')

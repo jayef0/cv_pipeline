@@ -26,9 +26,9 @@
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 from pylab import *
-from gop import *
+from .gop import *
 import numpy as np, os
-from util import *
+from .util import *
 from sys import argv
 from time import time
 
@@ -49,7 +49,7 @@ for im in argv[1:]:
 	t2 = time()
 	# If you just want the boxes use
 	boxes = s.maskToBox( b )
-	print( "Generated %d proposals in %0.2fs (OverSeg: %0.2fs, Prop: %0.2fs)"%(b.shape[0],t2-t0,t1-t0,t2-t1) )
+	print(( "Generated %d proposals in %0.2fs (OverSeg: %0.2fs, Prop: %0.2fs)"%(b.shape[0],t2-t0,t1-t0,t2-t1) ))
 	figure()
 	for i in range(min(20,b.shape[0])):
 		im = np.array( s.image )

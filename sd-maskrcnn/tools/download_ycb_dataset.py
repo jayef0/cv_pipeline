@@ -35,7 +35,7 @@ def download_file(url, filename):
     f = open(filename, 'wb')
     meta = u.info()
     file_size = int(meta.get("Content-Length"))
-    print("Downloading: {} ({:.2f} MB)".format(filename, file_size/1000000.0))
+    print(("Downloading: {} ({:.2f} MB)".format(filename, file_size/1000000.0)))
 
     file_size_dl = 0
     block_sz = 65536

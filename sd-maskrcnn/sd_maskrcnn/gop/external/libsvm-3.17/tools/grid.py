@@ -6,7 +6,7 @@ from threading import Thread
 from subprocess import *
 
 if sys.version_info[0] < 3:
-	from Queue import Queue
+	from queue import Queue
 else:
 	from queue import Queue
 
@@ -49,13 +49,13 @@ class GridOption:
 				if options[i] == 'null':
 					self.grid_with_c = False
 				else:
-					self.c_begin, self.c_end, self.c_step = map(float,options[i].split(','))
+					self.c_begin, self.c_end, self.c_step = list(map(float,options[i].split(',')))
 			elif options[i] == '-log2g':
 				i = i + 1
 				if options[i] == 'null':
 					self.grid_with_g = False
 				else:
-					self.g_begin, self.g_end, self.g_step = map(float,options[i].split(','))
+					self.g_begin, self.g_end, self.g_step = list(map(float,options[i].split(',')))
 			elif options[i] == '-v':
 				i = i + 1
 				self.fold = options[i]
@@ -324,7 +324,7 @@ class TelnetWorker(Worker):
 		# XXX: how to know whether login is successful?
 		tn.read_until(self.username)
 		# 
-		print('login ok', self.host)
+		print(('login ok', self.host))
 		tn.write('cd '+os.getcwd()+'\n')
 		Worker.run(self)
 		tn.write('exit\n')			   
@@ -455,7 +455,7 @@ def find_parameters(dataset_pathname, options=''):
 	if best_g != None:
 		best_param['g'] = 2.0**best_g
 		best_cg += [2.0**best_g]
-	print('{0} {1}'.format(' '.join(map(str,best_cg)), best_rate))
+	print(('{0} {1}'.format(' '.join(map(str,best_cg)), best_rate)))
 
 	return best_rate, best_param
 

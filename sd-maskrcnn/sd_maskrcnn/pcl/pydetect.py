@@ -85,7 +85,7 @@ def detect(detector_type, config, run_dir, test_config):
     gt_mask_dir = os.path.join(dataset_dir, test_config['masks'])
 
     # Input binary mask data
-    if 'bin_masks' in test_config.keys():
+    if 'bin_masks' in list(test_config.keys()):
         bin_mask_dir = os.path.join(dataset_dir, test_config['bin_masks'])
 
     # Input camera intrinsics
@@ -181,9 +181,9 @@ def detect(detector_type, config, run_dir, test_config):
         np.save(os.path.join(pred_dir, output_name + '.npy'), pred_mask_output)
         np.save(os.path.join(pred_info_dir, output_name + '.npy'), r_info)
 
-    print('Saved prediction masks to:\t {}'.format(pred_dir))
-    print('Saved prediction info (bboxes, scores, classes) to:\t {}'.format(pred_info_dir))
-    print('Saved transformed GT segmasks to:\t {}'.format(resized_segmask_dir))
+    print(('Saved prediction masks to:\t {}'.format(pred_dir)))
+    print(('Saved prediction info (bboxes, scores, classes) to:\t {}'.format(pred_info_dir)))
+    print(('Saved transformed GT segmasks to:\t {}'.format(resized_segmask_dir)))
 
     return pred_dir, pred_info_dir, resized_segmask_dir
 

@@ -78,7 +78,7 @@ def printMemUsage():
 	if psutil:
 		u = mem_usage()
 		M = psutil.virtual_memory()
-		print( "Process Mem: %0.1fMb     System: %0.1fMb / %0.1fMb"%(u, M.used/1048576., M.total/1048576.) )
+		print(( "Process Mem: %0.1fMb     System: %0.1fMb / %0.1fMb"%(u, M.used/1048576., M.total/1048576.) ))
 
 def fastSampleWithoutRep( a, size, tile=True ):
 	S = np.random.randint( 0, a-1, size=2*size )

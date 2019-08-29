@@ -2073,7 +2073,7 @@ class MaskRCNN():
         # Get directory names. Each directory corresponds to a model
         dir_names = next(os.walk(self.model_dir))[1]
         key = self.config.NAME.lower()
-        dir_names = filter(lambda f: f.startswith(key), dir_names)
+        dir_names = [f for f in dir_names if f.startswith(key)]
         dir_names = sorted(dir_names)
         if not dir_names:
             import errno
@@ -2084,7 +2084,7 @@ class MaskRCNN():
         dir_name = os.path.join(self.model_dir, dir_names[-1])
         # Find the last checkpoint
         checkpoints = next(os.walk(dir_name))[2]
-        checkpoints = filter(lambda f: f.startswith("mask_rcnn"), checkpoints)
+        checkpoints = [f for f in checkpoints if f.startswith("mask_rcnn")]
         checkpoints = sorted(checkpoints)
         if not checkpoints:
             import errno
@@ -2125,7 +2125,7 @@ class MaskRCNN():
 
         # Exclude some layers
         if exclude:
-            layers = filter(lambda l: l.name not in exclude, layers)
+            layers = [l for l in layers if l.name not in exclude]
 
         if by_name:
             saving.load_weights_from_hdf5_group_by_name(f, layers)
@@ -2217,7 +2217,7 @@ class MaskRCNN():
         for layer in layers:
             # Is the layer a model?
             if layer.__class__.__name__ == 'Model':
-                print("In model: ", layer.name)
+                print(("In model: ", layer.name))
                 self.set_trainable(
                     layer_regex, keras_model=layer, indent=indent + 4)
                 continue
@@ -2262,7 +2262,7 @@ class MaskRCNN():
                 # Epoch number in file is 1-based, and in Keras code it's 0-based.
                 # So, adjust for that then increment by one to start from the next epoch
                 self.epoch = int(m.group(6)) - 1 + 1
-                print('Re-starting from epoch %d' % self.epoch)
+                print(('Re-starting from epoch %d' % self.epoch))
 
         # Directory for training logs
         self.log_dir = os.path.join(self.model_dir, "{}{:%Y%m%dT%H%M}".format(
@@ -2321,7 +2321,7 @@ class MaskRCNN():
             # All layers
             "all": ".*",
         }
-        if layers in layer_regex.keys():
+        if layers in list(layer_regex.keys()):
             layers = layer_regex[layers]
 
         # Data generators
@@ -2688,7 +2688,7 @@ class MaskRCNN():
 
         # Organize desired outputs into an ordered dict
         outputs = OrderedDict(outputs)
-        for o in outputs.values():
+        for o in list(outputs.values()):
             assert o is not None
 
         # Build a Keras function to run parts of the computation graph
@@ -2717,8 +2717,8 @@ class MaskRCNN():
 
         # Pack the generated Numpy arrays into a a dict and log the results.
         outputs_np = OrderedDict([(k, v)
-                                  for k, v in zip(outputs.keys(), outputs_np)])
-        for k, v in outputs_np.items():
+                                  for k, v in zip(list(outputs.keys()), outputs_np)])
+        for k, v in list(outputs_np.items()):
             log(k, v)
         return outputs_np
 

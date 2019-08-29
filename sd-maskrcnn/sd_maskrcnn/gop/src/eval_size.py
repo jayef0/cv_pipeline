@@ -25,11 +25,11 @@
 	 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
-from gop import *
+from .gop import *
 import numpy as np
 from time import sleep
 from pickle import dump,load
-from util import *
+from .util import *
 
 over_segs,segmentations,boxes = loadVOCAndOverSeg( "test", detector='mssf', year="2012" )
 has_box = [len(b)>0 for b in boxes]
@@ -38,10 +38,10 @@ boxes = [np.vstack(b).astype(np.int32) if len(b)>0 else np.zeros((0,4),dtype=np.
 prop_settings = setupBaseline( 130, 5, 0.8 )
 bo,b_bo,pool_s,box_pool_s = dataset.proposeAndEvaluate( over_segs, segmentations, boxes, proposals.Proposal( prop_settings ) )
 
-print( "ABO        ", np.mean(bo[:,0]) )
-print( "cover      ", np.sum(bo[:,0]*bo[:,1])/np.sum(bo[:,1]) )
-print( "recall     ", np.mean(bo[:,0]>=0.5), "\t", np.mean(bo[:,0]>=0.6), "\t", np.mean(bo[:,0]>=0.7), "\t", np.mean(bo[:,0]>=0.8), "\t", np.mean(bo[:,0]>=0.9), "\t", np.mean(bo[:,0]>=1) )
-print( "# props    ", np.mean(pool_s) )
+print(( "ABO        ", np.mean(bo[:,0]) ))
+print(( "cover      ", np.sum(bo[:,0]*bo[:,1])/np.sum(bo[:,1]) ))
+print(( "recall     ", np.mean(bo[:,0]>=0.5), "\t", np.mean(bo[:,0]>=0.6), "\t", np.mean(bo[:,0]>=0.7), "\t", np.mean(bo[:,0]>=0.8), "\t", np.mean(bo[:,0]>=0.9), "\t", np.mean(bo[:,0]>=1) ))
+print(( "# props    ", np.mean(pool_s) ))
 
 def plotAndEBar( x, y, nbins=15, scatter=True, c=None, lbl=None ):
 	from pylab import plot,errorbar,xscale,fill_between,ylim

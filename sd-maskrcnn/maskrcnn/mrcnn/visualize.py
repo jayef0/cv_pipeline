@@ -59,7 +59,7 @@ def random_colors(N, bright=True):
     """
     brightness = 1.0 if bright else 0.7
     hsv = [(i / float(N), 1, brightness) for i in range(N)]
-    colors = list(map(lambda c: colorsys.hsv_to_rgb(*c), hsv))
+    colors = list([colorsys.hsv_to_rgb(*c) for c in hsv])
     random.shuffle(colors)
     return colors
 
@@ -255,10 +255,10 @@ def draw_rois(image, rois, refined_rois, mask, class_ids, class_names, limit=10)
     ax.imshow(masked_image)
 
     # Print stats
-    print("Positive ROIs: ", class_ids[class_ids > 0].shape[0])
-    print("Negative ROIs: ", class_ids[class_ids == 0].shape[0])
-    print("Positive Ratio: {:.2f}".format(
-        class_ids[class_ids > 0].shape[0] / float(class_ids.shape[0])))
+    print(("Positive ROIs: ", class_ids[class_ids > 0].shape[0]))
+    print(("Negative ROIs: ", class_ids[class_ids == 0].shape[0]))
+    print(("Positive Ratio: {:.2f}".format(
+        class_ids[class_ids > 0].shape[0] / float(class_ids.shape[0]))))
 
 
 # TODO: Replace with matplotlib equivalent?
@@ -334,8 +334,8 @@ def plot_overlaps(gt_class_ids, pred_class_ids, pred_scores,
                [class_names[int(id)] for id in gt_class_ids], rotation=90)
 
     thresh = overlaps.max() / 2.
-    for i, j in itertools.product(range(overlaps.shape[0]),
-                                  range(overlaps.shape[1])):
+    for i, j in itertools.product(list(range(overlaps.shape[0])),
+                                  list(range(overlaps.shape[1]))):
         text = ""
         if overlaps[i, j] > threshold:
             text = "match" if gt_class_ids[j] == pred_class_ids[i] else "wrong"

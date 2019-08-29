@@ -7,7 +7,7 @@ if sys.version_info[0] >= 3:
 	xrange = range
 
 def exit_with_help(argv):
-	print("""\
+	print(("""\
 Usage: {0} [options] dataset subset_size [output1] [output2]
 
 This script randomly selects a subset of the dataset.
@@ -19,7 +19,7 @@ options:
 
 output1 : the subset (optional)
 output2 : rest of the data (optional)
-If output1 is omitted, the subset will be printed on the screen.""".format(argv[0]))
+If output1 is omitted, the subset will be printed on the screen.""".format(argv[0])))
 	exit(1)
 
 def process_options(argv):
@@ -40,7 +40,7 @@ def process_options(argv):
 			i = i + 1
 			method = int(argv[i])
 			if method not in [0,1]:
-				print("Unknown selection method {0}".format(method))
+				print(("Unknown selection method {0}".format(method)))
 				exit_with_help(argv)
 		i = i + 1
 
@@ -55,7 +55,7 @@ def process_options(argv):
 
 def random_selection(dataset, subset_size):
 	l = sum(1 for line in open(dataset,'r'))
-	return sorted(random.sample(xrange(l), subset_size))
+	return sorted(random.sample(range(l), subset_size))
 
 def stratified_selection(dataset, subset_size):
 	labels = [line.split(None,1)[0] for line in open(dataset)]
@@ -83,7 +83,7 @@ Please use -s 1.
 ''')
 			sys.exit(-1)
 		remaining -= s
-		ret += [linenums[i] for i in random.sample(xrange(label_size), s)]
+		ret += [linenums[i] for i in random.sample(range(label_size), s)]
 	return sorted(ret)
 
 def main(argv=sys.argv):
@@ -100,8 +100,8 @@ def main(argv=sys.argv):
 	#select instances based on selected_lines
 	dataset = open(dataset,'r')
 	prev_selected_linenum = -1
-	for i in xrange(len(selected_lines)):
-		for cnt in xrange(selected_lines[i]-prev_selected_linenum-1):
+	for i in range(len(selected_lines)):
+		for cnt in range(selected_lines[i]-prev_selected_linenum-1):
 			line = dataset.readline()
 			if rest_file: 
 				rest_file.write(line)

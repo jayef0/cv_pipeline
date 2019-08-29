@@ -61,7 +61,7 @@ def analyze_image_depths(path, bbox, out_name):
 
     var = np.var(vec)
     mean = np.mean(vec)
-    print("State for {}: Mean: {}, Standard Deviation: {}\n".format(out_name, mean, np.sqrt(var)))
+    print(("State for {}: Mean: {}, Standard Deviation: {}\n".format(out_name, mean, np.sqrt(var))))
 
     n, bins, patches = plt.hist(vec, vec.size // 10, facecolor="blue")
 

@@ -158,7 +158,7 @@ def VUS( n, bo ):
 
 print( "VUS     Linear   Log" )
 for k in sorted(bo.keys()):
-	print( k, *VUS(n[k],bo[k]) )
+	print(( k, *VUS(n[k],bo[k]) ))
 
 if output!=None:
 	from matplotlib.backends.backend_pdf import PdfPages

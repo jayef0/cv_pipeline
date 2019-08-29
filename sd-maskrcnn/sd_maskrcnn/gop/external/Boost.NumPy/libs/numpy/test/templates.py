@@ -18,7 +18,7 @@ class TestTemplates(unittest.TestCase):
                 a1 = numpy.zeros(shape, dtype=dtype)
                 a2 = v.reshape(a1.shape)
                 templates_mod.fill(a1)
-                self.assert_((a1 == a2).all())
+                self.assertTrue((a1 == a2).all())
         a1 = numpy.zeros((12,), dtype=numpy.float64)
         self.assertRaises(TypeError, templates_mod.fill, a1)
         a1 = numpy.zeros((12,2,3), dtype=numpy.float32)

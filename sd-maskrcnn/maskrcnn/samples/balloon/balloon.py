@@ -123,7 +123,7 @@ class BalloonDataset(utils.Dataset):
             # shape_attributes (see json format above)
             # The if condition is needed to support VIA versions 1.x and 2.x.
             if type(a['regions']) is dict:
-                polygons = [r['shape_attributes'] for r in a['regions'].values()]
+                polygons = [r['shape_attributes'] for r in list(a['regions'].values())]
             else:
                 polygons = [r['shape_attributes'] for r in a['regions']] 
 
@@ -225,7 +225,7 @@ def detect_and_color_splash(model, image_path=None, video_path=None):
     # Image or video?
     if image_path:
         # Run model detection and generate the color splash effect
-        print("Running on {}".format(args.image))
+        print(("Running on {}".format(args.image)))
         # Read image
         image = skimage.io.imread(args.image)
         # Detect objects
@@ -252,7 +252,7 @@ def detect_and_color_splash(model, image_path=None, video_path=None):
         count = 0
         success = True
         while success:
-            print("frame: ", count)
+            print(("frame: ", count))
             # Read next image
             success, image = vcapture.read()
             if success:
@@ -268,7 +268,7 @@ def detect_and_color_splash(model, image_path=None, video_path=None):
                 vwriter.write(splash)
                 count += 1
         vwriter.release()
-    print("Saved to ", file_name)
+    print(("Saved to ", file_name))
 
 
 ############################################################
@@ -309,9 +309,9 @@ if __name__ == '__main__':
         assert args.image or args.video,\
                "Provide --image or --video to apply color splash"
 
-    print("Weights: ", args.weights)
-    print("Dataset: ", args.dataset)
-    print("Logs: ", args.logs)
+    print(("Weights: ", args.weights))
+    print(("Dataset: ", args.dataset))
+    print(("Logs: ", args.logs))
 
     # Configurations
     if args.command == "train":
@@ -349,7 +349,7 @@ if __name__ == '__main__':
         weights_path = args.weights
 
     # Load weights
-    print("Loading weights ", weights_path)
+    print(("Loading weights ", weights_path))
     if args.weights.lower() == "coco":
         # Exclude the last layers because they require a matching
         # number of classes
@@ -366,5 +366,5 @@ if __name__ == '__main__':
         detect_and_color_splash(model, image_path=args.image,
                                 video_path=args.video)
     else:
-        print("'{}' is not recognized. "
-              "Use 'train' or 'splash'".format(args.command))
+        print(("'{}' is not recognized. "
+              "Use 'train' or 'splash'".format(args.command)))

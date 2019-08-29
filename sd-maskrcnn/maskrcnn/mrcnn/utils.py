@@ -766,12 +766,12 @@ def compute_ap_range(gt_box, gt_class_id, gt_mask,
                         pred_box, pred_class_id, pred_score, pred_mask,
                         iou_threshold=iou_threshold)
         if verbose:
-            print("AP @{:.2f}:\t {:.3f}".format(iou_threshold, ap))
+            print(("AP @{:.2f}:\t {:.3f}".format(iou_threshold, ap)))
         AP.append(ap)
     AP = np.array(AP).mean()
     if verbose:
-        print("AP @{:.2f}-{:.2f}:\t {:.3f}".format(
-            iou_thresholds[0], iou_thresholds[-1], AP))
+        print(("AP @{:.2f}-{:.2f}:\t {:.3f}".format(
+            iou_thresholds[0], iou_thresholds[-1], AP)))
     return AP
 
 
@@ -843,7 +843,7 @@ def download_trained_weights(coco_model_path, verbose=1):
     coco_model_path: local path of COCO trained weights
     """
     if verbose > 0:
-        print("Downloading pretrained model to " + coco_model_path + " ...")
+        print(("Downloading pretrained model to " + coco_model_path + " ..."))
     with urllib.request.urlopen(COCO_MODEL_URL) as resp, open(coco_model_path, 'wb') as out:
         shutil.copyfileobj(resp, out)
     if verbose > 0:

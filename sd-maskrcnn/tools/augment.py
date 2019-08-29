@@ -82,7 +82,7 @@ def augment(config):
 
     mkdir_if_missing(out_dir)
 
-    print("Augmenting data in directory {}.\n".format(img_dir))
+    print(("Augmenting data in directory {}.\n".format(img_dir)))
     for img_file in tqdm(os.listdir(img_dir)):
         if img_file.endswith(".png"):
             # read in image
@@ -94,7 +94,7 @@ def augment(config):
             out_path = os.path.join(out_dir, img_file)
             skimage.io.imsave(out_path, skimage.img_as_ubyte(new_img))
 
-    print("Augmentation complete; files saved in {}.\n".format(out_dir))
+    print(("Augmentation complete; files saved in {}.\n".format(out_dir)))
 
 if __name__ == "__main__":
 

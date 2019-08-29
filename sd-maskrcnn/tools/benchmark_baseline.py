@@ -51,7 +51,7 @@ def benchmark(config):
     """Computes and stores predictions and then
     evaluates them on COCO metrics and supplementary benchmarking script."""
 
-    print("Benchmarking Baseline method {}.".format(config['detector']['type']))
+    print(("Benchmarking Baseline method {}.".format(config['detector']['type'])))
 
     # Create new directory for run outputs
     # In what location should we put this new directory?
@@ -81,7 +81,7 @@ def benchmark(config):
     if config['vis']['s_bench']:
         s_benchmark(output_dir, config['dataset'], pred_mask_dir, pred_info_dir, gt_mask_dir)
 
-    print("Saved benchmarking output to {}.\n".format(output_dir))
+    print(("Saved benchmarking output to {}.\n".format(output_dir)))
     return ap, ar
 
 def visualize_predictions(run_dir, test_config, pred_mask_dir, pred_info_dir, show_bbox=True, show_class=True):

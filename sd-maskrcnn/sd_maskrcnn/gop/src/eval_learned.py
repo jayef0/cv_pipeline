@@ -25,12 +25,12 @@
 	 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
-from gop import *
+from .gop import *
 import numpy as np
-from util import *
-from train_seed import trainSeed
+from .util import *
+from .train_seed import trainSeed
 from pickle import load, dump
-import train_mask
+from . import train_mask
 
 LATEX_OUTPUT=True
 
@@ -77,13 +77,13 @@ for N_S,N_T,iou in s:
 	prop_settings = setupLearned( N_S, N_T, iou, SEED_PROPOSAL=True )
 	bo,b_bo,pool_s,box_pool_s = dataset.proposeAndEvaluate( over_segs, segmentations, boxes, proposals.Proposal( prop_settings ) )
 	if LATEX_OUTPUT:
-		print( "Learned GOP ($%d$,$%d$) & %d & %0.3f & %0.3f & %0.3f & %0.3f &  \\\\"%(N_S,N_T,np.mean(pool_s),np.mean(bo[:,0]),np.sum(bo[:,0]*bo[:,1])/np.sum(bo[:,1]), np.mean(bo[:,0]>=0.5), np.mean(bo[:,0]>=0.7) ) )
+		print(( "Learned GOP ($%d$,$%d$) & %d & %0.3f & %0.3f & %0.3f & %0.3f &  \\\\"%(N_S,N_T,np.mean(pool_s),np.mean(bo[:,0]),np.sum(bo[:,0]*bo[:,1])/np.sum(bo[:,1]), np.mean(bo[:,0]>=0.5), np.mean(bo[:,0]>=0.7) ) ))
 	else:
-		print( "ABO        ", np.mean(bo[:,0]) )
-		print( "cover      ", np.sum(bo[:,0]*bo[:,1])/np.sum(bo[:,1]) )
-		print( "recall     ", np.mean(bo[:,0]>=0.5), "\t", np.mean(bo[:,0]>=0.6), "\t", np.mean(bo[:,0]>=0.7), "\t", np.mean(bo[:,0]>=0.8), "\t", np.mean(bo[:,0]>=0.9), "\t", np.mean(bo[:,0]>=1) )
-		print( "# props    ", np.mean(pool_s) )
+		print(( "ABO        ", np.mean(bo[:,0]) ))
+		print(( "cover      ", np.sum(bo[:,0]*bo[:,1])/np.sum(bo[:,1]) ))
+		print(( "recall     ", np.mean(bo[:,0]>=0.5), "\t", np.mean(bo[:,0]>=0.6), "\t", np.mean(bo[:,0]>=0.7), "\t", np.mean(bo[:,0]>=0.8), "\t", np.mean(bo[:,0]>=0.9), "\t", np.mean(bo[:,0]>=1) ))
+		print(( "# props    ", np.mean(pool_s) ))
 
-		print( "box ABO    ", np.mean(b_bo) )
-		print( "box recall ", np.mean(b_bo>=0.5), "\t", np.mean(b_bo>=0.6), "\t", np.mean(b_bo>=0.7), "\t", np.mean(b_bo>=0.8), "\t", np.mean(b_bo>=0.9), "\t", np.mean(b_bo>=1) )
-		print( "# box      ", np.mean(box_pool_s[~np.isnan(box_pool_s)]) )
+		print(( "box ABO    ", np.mean(b_bo) ))
+		print(( "box recall ", np.mean(b_bo>=0.5), "\t", np.mean(b_bo>=0.6), "\t", np.mean(b_bo>=0.7), "\t", np.mean(b_bo>=0.8), "\t", np.mean(b_bo>=0.9), "\t", np.mean(b_bo>=1) ))
+		print(( "# box      ", np.mean(box_pool_s[~np.isnan(box_pool_s)]) ))

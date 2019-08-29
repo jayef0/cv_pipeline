@@ -1,7 +1,7 @@
-numpy
+numpy>=1.14.0
 Pillow
 cython
-scikit-image
+scikit-image<0.15.0
 tensorflow-gpu
 keras>=2.0.8
 opencv-python
@@ -23,3 +23,6 @@ pybullet
 trimesh[easy]
 pyrealsense2
 scipy
+visualization
+gputil
+psutil

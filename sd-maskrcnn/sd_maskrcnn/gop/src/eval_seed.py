@@ -25,10 +25,10 @@
 	 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
-from gop import *
+from .gop import *
 import numpy as np
 from pickle import load
-from util import *
+from .util import *
 
 # GOP settings
 N_SEED = [1,2,5,10,20,35,50,75,100,200]
@@ -69,8 +69,8 @@ if __name__ == "__main__":
 		n_spix += nseg_in_sp
 		n_seg += nseg
 
-	print( "#SP Seed      %d / %d [%f]"%(n_spix, n_seg, 100*n_spix/n_seg) )
-	print( "-"*60 )
-	print( ' '*40, "".join( ["     %5d     "%n for n in N_SEED] ) )
+	print(( "#SP Seed      %d / %d [%f]"%(n_spix, n_seg, 100*n_spix/n_seg) ))
+	print(( "-"*60 ))
+	print(( ' '*40, "".join( ["     %5d     "%n for n in N_SEED] ) ))
 	for i,sf in enumerate( seed_functions ):
-		print( "%-40s   %s      %d"%(str(type(sf).__name__),"    ".join( ["%4d [%3.1f]"%(n, 100*n/n_seg) for n in n_seed[i]] ), n_prod[i,-1] ) )
+		print(( "%-40s   %s      %d"%(str(type(sf).__name__),"    ".join( ["%4d [%3.1f]"%(n, 100*n/n_seg) for n in n_seed[i]] ), n_prod[i,-1] ) ))

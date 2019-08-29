@@ -202,7 +202,7 @@ class PybulletPhysicsEngine(PhysicsEngine):
     
     def _update_scene(self):
         self._viewer.render_lock.acquire()
-        for key in self._key_to_id.keys():
+        for key in list(self._key_to_id.keys()):
             obj_pose = self.get_pose(key).matrix
             if self._scene.get_nodes(name=key):
                 next(iter(self._scene.get_nodes(name=key))).matrix = obj_pose

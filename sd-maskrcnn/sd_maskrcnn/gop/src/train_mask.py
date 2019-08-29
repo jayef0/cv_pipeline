@@ -26,8 +26,8 @@
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 from pylab import *
-from gop import *
-from util import *
+from .gop import *
+from .util import *
 import numpy as np
 from pickle import load, dump
 try:
@@ -78,7 +78,7 @@ def fitMask(obj_feature, cls, bs, obj_ids):
 		f = np.vstack((pick_pos,pick_neg))
 		lbl = np.hstack((np.ones(pick_pos.shape[0],dtype=int),np.zeros(pick_neg.shape[0],dtype=int)))
 		c.fit( f, lbl )
-		print( "    True / False pos ", np.sum( c.predict( pos ) ), " / ", np.sum( c.predict( neg ) ) )
+		print(( "    True / False pos ", np.sum( c.predict( pos ) ), " / ", np.sum( c.predict( neg ) ) ))
 	print()
 
 def scoreCls( c, f, l ):
@@ -143,7 +143,7 @@ def train( n_masks=3, seed_func=None ):
 	n_seed,n_obj = len(im_id),len(obj_seed)
 	obj_seed = np.hstack(obj_seed)
 	print('[done]')
-	print( "  Got %d seeds in %d objects. Missed %s (%d by seed)"%(n_seed,n_obj,missed+missed_seed,missed_seed) )
+	print(( "  Got %d seeds in %d objects. Missed %s (%d by seed)"%(n_seed,n_obj,missed+missed_seed,missed_seed) ))
 	
 	# Get the features
 	stdout.write( "Computing features...              " )
@@ -169,7 +169,7 @@ def train( n_masks=3, seed_func=None ):
 	best_cls = np.zeros( n_seed, dtype=int )
 	for i,cls in enumerate(all_cls):
 		fitMask( obj_feature, cls, bs, np.random.choice(n_seed,N_INITIAL) )
-		all_scores[i] = list(score( obj_feature, cls, bs, range(n_seed) ))
+		all_scores[i] = list(score( obj_feature, cls, bs, list(range(n_seed)) ))
 	print( )
 	
 	print( "Training masks..." )
@@ -178,9 +178,9 @@ def train( n_masks=3, seed_func=None ):
 		for i,cls in enumerate(all_cls):
 			# Find all the training examples
 			sel = np.nonzero(all_scores[i]==np.min(all_scores,0))[0]
-			print("  Training classifier %d with %d samples"%(i,len(sel)) )
+			print(("  Training classifier %d with %d samples"%(i,len(sel)) ))
 			fitMask( obj_feature, cls, bs, sel )
-			all_scores[i] = list(score( obj_feature, cls, bs, range(n_seed) ))
+			all_scores[i] = list(score( obj_feature, cls, bs, list(range(n_seed)) ))
 	
 	def makeBinaryLearnedUnary( features, cls ):
 		return proposals.binaryLearnedUnary( features, -np.array(cls.coef_,dtype=np.float32).flatten(), -float(cls.intercept_) )

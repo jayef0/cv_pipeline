@@ -12,7 +12,7 @@ import numpy
 class DtypeTestCase(unittest.TestCase):
     
     def assertEquivalent(self, a, b):
-        return self.assert_(dtype_mod.equivalent(a, b), "%r is not equivalent to %r")
+        return self.assertTrue(dtype_mod.equivalent(a, b), "%r is not equivalent to %r")
 
     def testIntegers(self):
         for bits in (8, 16, 32, 64):
@@ -27,8 +27,8 @@ class DtypeTestCase(unittest.TestCase):
             self.assertEquivalent(fu(True), numpy.dtype(u))
             self.assertEquivalent(fs(int(1)), numpy.dtype(s))
             self.assertEquivalent(fu(int(1)), numpy.dtype(u))
-            self.assertEquivalent(fs(long(1)), numpy.dtype(s))
-            self.assertEquivalent(fu(long(1)), numpy.dtype(u))
+            self.assertEquivalent(fs(int(1)), numpy.dtype(s))
+            self.assertEquivalent(fu(int(1)), numpy.dtype(u))
         for name in ("bool_", "byte", "ubyte", "short", "ushort", "intc", "uintc"):
             t = getattr(numpy, name)
             ft = getattr(dtype_mod, "accept_%s" % name)
@@ -37,7 +37,7 @@ class DtypeTestCase(unittest.TestCase):
             self.assertEquivalent(ft(True), numpy.dtype(t))
             if name != "bool_":
                 self.assertEquivalent(ft(int(1)), numpy.dtype(t))
-                self.assertEquivalent(ft(long(1)), numpy.dtype(t))
+                self.assertEquivalent(ft(int(1)), numpy.dtype(t))
 
 
     def testFloats(self):
