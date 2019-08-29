@@ -11,7 +11,7 @@ from keras.backend.tensorflow_backend import set_session, clear_session
 
 class MaskLoader():
 
-    def __init__(self, cfgFile="practical/cfg/maskrcnn.yaml"):
+    def __init__(self, cfgFile="cfg/maskrcnn.yaml"):
         config = YamlConfig(cfgFile)
         print("Benchmarking model.")
 

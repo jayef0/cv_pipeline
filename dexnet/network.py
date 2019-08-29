@@ -3,7 +3,7 @@ from gqcnn.grasping import Grasp2D, SuctionPoint2D, CrossEntropyRobustGraspingPo
 from gqcnn.utils import GripperMode, NoValidGraspsException
 from perception import CameraIntrinsics, ColorImage, DepthImage, BinaryImage, RgbdImage
 from visualization import Visualizer2D as vis
-from practical.vision import baxterCamIntrinsics
+#from practical.vision import baxterCamIntrinsics
 import numpy as np
 from gqcnn.grasping import FullyConvolutionalGraspingPolicyParallelJaw, FullyConvolutionalGraspingPolicySuction
 
@@ -20,7 +20,7 @@ class DexnetLoader():
         else: 
             self.graspPolicy = CrossEntropyRobustGraspingPolicy(self.cfg['policy'])
 
-    def rgbd2state(self, img, d, segmask=None, frame='pcl', rgbEncoding='bgr8', intr=baxterCamIntrinsics, obj_mask=False):
+    def rgbd2state(self, img, d, intr, segmask=None, frame='pcl', rgbEncoding='bgr8', obj_mask=False):
         cam_intr = CameraIntrinsics(frame=frame, fx=intr['fx'], fy=intr['fy'], cx=intr['cx'], cy=intr['cy'], height=intr['height'], width=intr['width'])
         color_im = ColorImage(img.astype(np.uint8), encoding=rgbEncoding, frame=frame)
         depth_im = DepthImage(d.astype(np.float32), frame=frame)
