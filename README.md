@@ -1,15 +1,15 @@
-## Computer Vision Pipeline for robotic percetion
+# Computer Vision Pipeline for robotic perception
 
 Computer Vision Pipeline for robotic perception tasks. This repoitory integrates am [Mask R-CNN](https://github.com/BerkeleyAutomation/sd-maskrcnn) to perform scene segmentation based on rdbd data. Furthermore a [Fully Convolutional Grasp Quality](https://github.com/BerkeleyAutomation/gqcnn) approach by Uni Berkeley is used to propose and evaluate grasp points for parallel jaw and suction cup gripper.
 
 
-## Installation
+# Installation
 
-# Install NVIDIA GPU driver 4.10
+## Install NVIDIA GPU driver 4.10
    ```bash
    sudo apt install nvidia-driver-410
    ```
-# Install CUDA 10
+## Install CUDA 10
 
 1. Purge existign CUDA first
    ```bash
@@ -49,7 +49,7 @@ Computer Vision Pipeline for robotic perception tasks. This repoitory integrates
    sudo ln -s /usr/lib/x86_64-linux-gnu/libnccl.so.2 /usr/local/cuda/nccl/lib/
    sudo ln -s /usr/lib/x86_64-linux-gnu/libcudnn.so.7 /usr/local/cuda-10.0/lib64/
    ```
-# Install this Repository
+## Install this Repository
 
 1. Clone this repository
    ```bash
