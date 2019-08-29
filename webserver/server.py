@@ -5,16 +5,16 @@ import json
 import base64
 import sys
 sys.path.append('.')
-from practical.webserver.utils import rgbdFromRequest, rgbdSegmaskFromRequest, plotImage, rgbFromRequest, dFromRequest
-from practical.dexnet.network import DexnetLoader
-from practical.dexnet.maskNet import MaskLoader
+from webserver.utils import rgbdFromRequest, rgbdSegmaskFromRequest, plotImage, rgbFromRequest, dFromRequest
+from dexnet.network import DexnetLoader
+from dexnet.maskNet import MaskLoader
 
 
 mask_net = MaskLoader()
-gqcnnpj_net = DexnetLoader('practical/cfg/gqcnn_pj_tuned.yaml')
-gqcnnsuction_net = DexnetLoader('practical/cfg/gqcnn_suction.yaml')
-fcgqcnnpj_net = DexnetLoader('practical/cfg/fcgqcnn_pj.yaml')
-fcgqcnnsuction_net = DexnetLoader('practical/cfg/fc_gqcnn_suction.yaml')
+gqcnnpj_net = DexnetLoader('cfg/gqcnn_pj_tuned.yaml')
+gqcnnsuction_net = DexnetLoader('cfg/gqcnn_suction.yaml')
+fcgqcnnpj_net = DexnetLoader('cfg/fcgqcnn_pj.yaml')
+fcgqcnnsuction_net = DexnetLoader('cfg/fc_gqcnn_suction.yaml')
 
 @app.route('/', methods=['GET'])
 def helloWorld():
