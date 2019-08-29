@@ -5,7 +5,7 @@ import sys
 import cv2
 import base64
 
-def predictGQCNN_pj(img, d, fx, fy, cx, cy, host='http://multitask.ddnss.de:5000', width=640, height=480, encoded=False, segmask=None):
+def predictGQCNN_pj(img, d, fx, fy, cx, cy, host='http://127.0.0.1:5000', width=640, height=480, encoded=False, segmask=None):
     url = host + '/gqcnnpj'
     headers = {'content-type': 'application/json'}
     if encoded:
@@ -23,7 +23,7 @@ def predictGQCNN_pj(img, d, fx, fy, cx, cy, host='http://multitask.ddnss.de:5000
 
 
 
-def predictFCGQCNN_pj(img, d, segmask, fx, fy, cx, cy,  host='http://multitask.ddnss.de:5000', width=640, height=480, encoded=False):
+def predictFCGQCNN_pj(img, d, segmask, fx, fy, cx, cy,  host='http://127.0.0.1:5000', width=640, height=480, encoded=False):
     url = host + '/fcgqcnnpj'
     headers = {'content-type': 'application/json'}
     if encoded:
@@ -36,7 +36,7 @@ def predictFCGQCNN_pj(img, d, segmask, fx, fy, cx, cy,  host='http://multitask.d
     response = requests.post(url, json=req_dict, headers=headers)
     return response.json()
 
-def predictGQCNN_suction(img, d, fx, fy, cx, cy, host='http://multitask.ddnss.de:5000', width=640, height=480, encoded=False ,segmask=None):
+def predictGQCNN_suction(img, d, fx, fy, cx, cy, host='http://127.0.0.1:5000', width=640, height=480, encoded=False ,segmask=None):
     url = host + '/gqcnnsuction'
     headers = {'content-type': 'application/json'}
     if encoded:
@@ -53,7 +53,7 @@ def predictGQCNN_suction(img, d, fx, fy, cx, cy, host='http://multitask.ddnss.de
     return response.json()
 
 
-def predictFCGQCNN_suction(img, d, segmask, fx, fy, cx, cy, host='http://multitask.ddnss.de:5000', width=640, height=480, encoded=False):
+def predictFCGQCNN_suction(img, d, segmask, fx, fy, cx, cy, host='http://127.0.0.1:5000', width=640, height=480, encoded=False):
     url = host + '/fcgqcnnsuction'
     headers = {'content-type': 'application/json'}
     if encoded:
@@ -66,7 +66,7 @@ def predictFCGQCNN_suction(img, d, segmask, fx, fy, cx, cy, host='http://multita
     response = requests.post(url, json=req_dict, headers=headers)
     return response.json()
 
-def predictMask(d, fx, fy, cx, cy,  host='http://multitask.ddnss.de:5000', width=640, height=480, encoded=False):
+def predictMask(d, fx, fy, cx, cy,  host='http://127.0.0.1:5000', width=640, height=480, encoded=False):
     #img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     url = host + '/mask'
     headers = {'content-type': 'application/json'}
@@ -79,7 +79,7 @@ def predictMask(d, fx, fy, cx, cy,  host='http://multitask.ddnss.de:5000', width
             res_json[key] = np.array(res_json[key], dtype=np.float32)
     return res_json
 
-def predictRgb(img, fx, fy, cx, cy, host='http://multitask.ddnss.de:5000', width=640, height=480, encoded=False):
+def predictRgb(img, fx, fy, cx, cy, host='http://127.0.0.1:5000', width=640, height=480, encoded=False):
     #img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     url = host + '/maskRgb'
     headers = {'content-type': 'application/json'}
