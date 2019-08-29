@@ -5,6 +5,8 @@ Computer Vision Pipeline for robotic perception tasks. This repoitory integrates
 
 # Installation
 
+This installation guide assumes you have an untouched Ubuntu 18.04.2 LTS installation and a compatible NVIDIA GPU.
+
 ## Install NVIDIA GPU driver 4.10
    ```bash
    sudo apt install nvidia-driver-410
