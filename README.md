@@ -4,7 +4,10 @@ Computer Vision Pipeline for robotic perception tasks. This repoitory integrates
 
 
 ## Installation
-1. Clone this repository https://github.com/ralfgulde/cv_pipeline/ 
+1. Clone this repository
+   ```bash
+      git clone https://github.com/ralfgulde/cv_pipeline/ 
+   ```
 2. Download pre-trained models
    ```bash
    chmod +x download_models.sh
