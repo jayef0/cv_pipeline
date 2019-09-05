@@ -4,14 +4,14 @@ import numpy as np
 import sys
 sys.path.append('.')
 try:
-    sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
+    sys.path.remove('/opt/ros/melodic/lib/python2.7/dist-packages')
 except ValueError:
     pass  # do nothing!
 import cv2
 import base64
 from practical.vision import baxterCamIntrinsics as intr
 
-def predictGQCNN_pj(img, d,host='http://multitask.ddnss.de:5000', width=640, height=480, encoded=False,
+def predictGQCNN_pj(img, d,host='http://localhost:5000', width=640, height=480, encoded=False,
     fx=intr['fx'],
     fy=intr['fy'],
     cx=intr['cx'],
@@ -35,7 +35,7 @@ def predictGQCNN_pj(img, d,host='http://multitask.ddnss.de:5000', width=640, hei
 
 
 
-def predictFCGQCNN_pj(img, d, segmask, host='http://multitask.ddnss.de:5000', width=640, height=480, encoded=False,
+def predictFCGQCNN_pj(img, d, segmask, host='http://localhost:5000', width=640, height=480, encoded=False,
     fx=intr['fx'],
     fy=intr['fy'],
     cx=intr['cx'],
@@ -53,7 +53,7 @@ def predictFCGQCNN_pj(img, d, segmask, host='http://multitask.ddnss.de:5000', wi
     response = requests.post(url, json=req_dict, headers=headers)
     return response.json()
 
-def predictGQCNN_suction(img, d,host='http://multitask.ddnss.de:5000', width=640, height=480, encoded=False,
+def predictGQCNN_suction(img, d,host='http://localhost:5000', width=640, height=480, encoded=False,
     fx=intr['fx'],
     fy=intr['fy'],
     cx=intr['cx'],
@@ -76,7 +76,7 @@ def predictGQCNN_suction(img, d,host='http://multitask.ddnss.de:5000', width=640
     return response.json()
 
 
-def predictFCGQCNN_suction(img, d, segmask, host='http://multitask.ddnss.de:5000', width=640, height=480, encoded=False,
+def predictFCGQCNN_suction(img, d, segmask, host='http://localhost:5000', width=640, height=480, encoded=False,
     fx=intr['fx'],
     fy=intr['fy'],
     cx=intr['cx'],
@@ -94,7 +94,7 @@ def predictFCGQCNN_suction(img, d, segmask, host='http://multitask.ddnss.de:5000
     response = requests.post(url, json=req_dict, headers=headers)
     return response.json()
 
-def predictMask(d, host='http://multitask.ddnss.de:5000', width=640, height=480, encoded=False,
+def predictMask(d, host='http://localhost:5000', width=640, height=480, encoded=False,
     fx=intr['fx'],
     fy=intr['fy'],
     cx=intr['cx'],
@@ -112,7 +112,7 @@ def predictMask(d, host='http://multitask.ddnss.de:5000', width=640, height=480,
             res_json[key] = np.array(res_json[key], dtype=np.float32)
     return res_json
 
-def predictRgb(img, host='http://multitask.ddnss.de:5000', width=640, height=480, encoded=False,
+def predictRgb(img, host='http://localhost:5000', width=640, height=480, encoded=False,
     fx=intr['fx'],
     fy=intr['fy'],
     cx=intr['cx'],

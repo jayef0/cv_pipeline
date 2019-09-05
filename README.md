@@ -9,7 +9,7 @@ This installation guide assumes you have an untouched Ubuntu 18.04.2 LTS install
 
 ## Install NVIDIA GPU driver 4.10
    ```bash
-   add-apt-repository ppa:graphics-drivers/ppa
+   sudo add-apt-repository ppa:graphics-drivers/ppa
    sudo apt update
 
    sudo apt install nvidia-driver-410
@@ -19,7 +19,6 @@ This installation guide assumes you have an untouched Ubuntu 18.04.2 LTS install
 1. Purge existign CUDA first
    ```bash
    sudo apt --purge remove "cublas*" "cuda*"
-   sudo apt --purge remove "nvidia*"
    ```
 
 2. Install CUDA Toolkit 10
