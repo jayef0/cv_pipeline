@@ -10,9 +10,9 @@ imgaug
 IPython[all]
 numpy
 pycocotools>=2.0
-scikit-image>=0.14.2
 keras>=2.2
 tqdm
+loguru
 matplotlib
 autolab_core>=0.0.9
 autolab-perception

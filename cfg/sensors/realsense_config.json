@@ -1,0 +1,12 @@
+{
+    "id": "920312072048",
+    "fps": 30,
+    "cams": [
+        {
+            "type": "color",
+            "w": 640,
+            "h": 480
+        }
+    ],
+    "advanced": "cfg/sensors/high_accuracy.json"
+}

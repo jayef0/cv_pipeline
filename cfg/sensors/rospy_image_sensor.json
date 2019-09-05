@@ -1,0 +1,5 @@
+{
+    "topic": "/camera/color/image_raw",
+    "node_name": "image_sensor",
+    "rate": 24
+}
